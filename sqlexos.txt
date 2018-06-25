@@ -1,0 +1,52 @@
+Tables dune base de donnees
+
+SHOW TABLES
+
+
+description de la table films
+
+DESCRIBE 'film'
+
+
+afficher le titre des films
+
+SELECT titre FROM film
+
+
+afficher liste des films genre null
+
+SELECT * FROM `film` WHERE id_genre IS NULL
+
+
+les 10 derniers films dont l'affiche commence en 2000
+
+SELECT * FROM `film` WHERE date_debut_affiche BETWEEN '2000-01-01' AND '2000-12-31' ORDER BY date_debut_affiche DESC LIMIT 20
+
+
+afficher le titre des films qui ont comme id de genre 1 ou 2 et dont le titre commence par A
+
+SELECT titre FROM film WHERE id_genre = 1 OR id_genre = 2 HAVING titre LIKE 'a%'
+
+
+afficher le nombre de place dans le cinema
+
+SELECT SUM(nbr_siege) as 'nombre sieges' FROM `salle`
+
+
+afficher le nombre de place par salle
+
+SELECT SUM(nbr_siege) AS nombre_sieges
+FROM salle
+GROUP BY etage_salle
+
+
+afficher le nom des salles nb de place inferieur a 200
+
+SELECT nom_salle from salle where nbr_siege < 200*
+
+
+
+
+afficher le titre dans une colonne  (titre_cool) des films ayant day dans leur titre et sci fi
+
+SELECT titre as titre_cool FROM `film` WHERE id_genre = 2 AND titre LIKE '%day%'
